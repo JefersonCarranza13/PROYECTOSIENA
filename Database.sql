@@ -2,6 +2,24 @@ CREATE DATABASE Facturacion;
 
 USE Facturacion;
 
+CREATE TABLE t_rol(
+    id_rol        int(11)   AUTO_INCREMENT NOT NULL,
+    rol           int(11),
+    CONSTRAINT    pk_rol PRIMARY KEY(id_rol)
+)ENGINE=InnoDb;
+INSERT
+
+CREATE TABLE t_usuario(
+    id_usuario     int(11)   AUTO_INCREMENT NOT NULL,
+    usuario        varchar(50),
+    password       varchar(50),
+    id_rol         int(11),
+    CONSTRAINT     pk_usuario  PRIMARY KEY(id_usuario),
+    CONSTRAINT     fk_rol      FOREIGN KEY(id_rol) REFERENCES t_rol(id_rol)
+
+)ENGINE=InnoDb;
+INSERT INTO t_usuario (id_usuario, usuario, password, id_rol) VALUES (NULL, "Jeferson", "1234", 1);    
+
 CREATE TABLE t_ciudad(
     id_ciudad        int(11)   AUTO_INCREMENT NOT NULL,
     ciudad           varchar(100),
@@ -54,3 +72,4 @@ CREATE TABLE t_factura(
     CONSTRAINT       fk_cliente   FOREIGN KEY(id_cliente)   REFERENCES t_cliente(id_cliente),
     CONSTRAINT       fk_producto  FOREIGN KEY(id_producto)  REFERENCES t_producto(id_producto)
 )ENGINE=InnoDb;
+
